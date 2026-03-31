@@ -1,0 +1,57 @@
+<footer class="surface-footer border-t border-soft px-4 py-4 md:px-8">
+    <div class="mx-auto max-w-6xl">
+        <div class="surface-panel border-soft rounded-[1.8rem] border shadow-soft">
+            <textarea
+                id="composer"
+                rows="3"
+                class="w-full resize-none rounded-t-[1.8rem] bg-transparent px-5 py-4 text-primary outline-none placeholder:text-muted"
+                placeholder="Send a prompt to ChatGPT and the selected Ollama model..."
+            ></textarea>
+            <div class="flex flex-col gap-3 border-t border-soft px-5 py-3 md:flex-row md:items-center md:justify-between">
+                <div class="composer-meta">
+                    <p id="composerHint" class="text-xs text-muted">
+                        Shift + Enter for a new line. The same prompt goes to both panels.
+                    </p>
+                    <p id="voiceStatus" class="voice-status text-xs text-secondary" aria-live="polite">
+                        Mic ready. Voice transcription stays local on this PC.
+                    </p>
+                    <div id="attachmentList" class="attachment-list" aria-live="polite"></div>
+                </div>
+                <div class="composer-actions">
+                    <input id="chatFileInput" type="file" class="hidden" multiple>
+                    <button
+                        id="fileUploadButton"
+                        type="button"
+                        class="secondary-button file-upload-button transition"
+                        aria-label="Add files"
+                        title="Add files"
+                    >
+                        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21.44 11.05 12 20.5a5 5 0 1 1-7.07-7.07l10-10a3.5 3.5 0 0 1 4.95 4.95l-10 10a2 2 0 1 1-2.83-2.83l8.49-8.48"></path>
+                        </svg>
+                    </button>
+                    <button
+                        id="voiceButton"
+                        type="button"
+                        class="voice-button secondary-button transition"
+                        aria-label="Start voice input"
+                        title="Start voice input"
+                    >
+                        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 4.5a2.75 2.75 0 0 1 2.75 2.75v4.5a2.75 2.75 0 1 1-5.5 0v-4.5A2.75 2.75 0 0 1 12 4.5Z"></path>
+                            <path d="M6.75 11.75a5.25 5.25 0 1 0 10.5 0"></path>
+                            <path d="M12 17v2.5"></path>
+                            <path d="M9.5 19.5h5"></path>
+                        </svg>
+                    </button>
+                    <button
+                        id="sendButton"
+                        class="primary-button rounded-xl px-4 py-2 font-semibold transition disabled:cursor-not-allowed"
+                    >
+                        Send to Both
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

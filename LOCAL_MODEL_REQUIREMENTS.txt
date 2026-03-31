@@ -1,0 +1,27 @@
+Freeloader external runtime and model requirements
+
+This repository keeps project code and generated app state inside the project folder.
+The main expected dependencies outside the repository are installed applications and local model files.
+
+Required outside the repo:
+- Brave Browser with remote debugging enabled
+- Ollama installed locally
+- At least one local Ollama text model
+
+Default local model:
+- llama3.1:8b
+
+Optional outside the repo:
+- Oriserve/Whisper-Hindi2Hinglish-Apex local voice model
+
+Suggested Whisper model location:
+- ~/.ollama/models/external/Oriserve-Whisper-Hindi2Hinglish-Apex
+
+Config keys that may point outside the repo:
+- BRAVE_PATH
+- WHISPER_MODEL_PATH
+
+Important:
+- This file lists technical dependencies only.
+- It does not grant permission to use any third-party service or model.
+- Read DISCLAIMER.md, RESPONSIBLE_USE_AND_COMPLIANCE.md, and THIRD_PARTY_SERVICES_DISCLAIMER.md before use or publication.

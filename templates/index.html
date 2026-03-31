@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div id="toastContainer" class="fixed right-4 top-4 z-50 space-y-2"></div>
+
+    <div class="flex h-screen overflow-hidden">
+        {% include "partials/sidebar.html" %}
+
+        <main class="flex min-w-0 flex-1 flex-col">
+            {% include "partials/header.html" %}
+            {% include "partials/panels.html" %}
+            {% include "partials/composer.html" %}
+        </main>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script id="initialShellPayload" type="application/json">{{ initial_shell | tojson }}</script>
+{% endblock %}
