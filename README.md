@@ -16,6 +16,24 @@ It sends the same prompt to:
 
 The project is designed to help the owner create structured custom data for later model training and evaluation on data they control or are authorized to use.
 
+## At A Glance
+
+- Compare hosted and local model answers side by side in one desktop-style web UI.
+- Store prompts, responses, and hidden preference pairs locally in a training-friendly JSON format.
+- Reuse your own Brave session for the ChatGPT side and your own Ollama models for the local side.
+- Warm up the browser, Ollama, and optional voice stack through dedicated runtime endpoints.
+- Start with a checked-in publish-safe sample dataset or switch to your own private local history.
+
+## Quick Start
+
+1. Read [GUIDE.md](GUIDE.md) and the legal/compliance docs linked at the top of this page.
+2. Follow [INSTALLATION.md](INSTALLATION.md) to create `.venv`, configure `.env`, start Brave with remote debugging, and start Ollama.
+3. Run the smoke tests with `.venv\Scripts\python -m pytest -q`.
+4. Start the app with `.venv\Scripts\python web_app.py`.
+5. Open `http://127.0.0.1:5000`.
+
+For a publish-safe demo run, point `DATABASE_PATH` to `data/sample_chats.json`.
+
 ## Purpose
 
 - Compare hosted and local responses in one interface
@@ -45,6 +63,15 @@ Expected external dependencies:
 - Optional local Whisper model for voice transcription
 
 See `LOCAL_MODEL_REQUIREMENTS.txt` for the external runtime/model list.
+
+## Feature Highlights
+
+- Dual-provider chat flow: the same prompt can be sent to ChatGPT and Ollama at the same time.
+- Graceful runtime behavior: if one provider is unavailable, the app can still continue with the other.
+- Training-oriented storage: visible chat history plus hidden `training.preference_pairs` in the same JSON store.
+- Publish-safe example data: `data/sample_chats.json` gives visitors a safe example of the storage format.
+- Local voice path: optional speech-to-text support through a local Whisper-compatible model.
+- Small test suite: smoke tests validate the main Flask routes, degraded provider behavior, and runtime warmups.
 
 ## Legal And Usage Boundaries
 
@@ -95,6 +122,18 @@ This project is not affiliated with, endorsed by, or sponsored by OpenAI, Ollama
 - `CONTRIBUTING.md`: contributor workflow and test expectations
 - `PUBLISHING_CHECKLIST.md`: pre-release sanity checklist
 
+## Runtime Model
+
+Freeloader depends on a few separate moving parts:
+
+- Flask app in this repository
+- Brave running locally with remote debugging enabled
+- ChatGPT already open in your Brave session
+- Ollama running locally with at least one installed model
+- optional local Whisper model for voice transcription
+
+If one of those services is unavailable, the corresponding feature will be unavailable too.
+
 ## Main Entrypoints
 
 - Web UI: `python web_app.py`
@@ -111,6 +150,8 @@ Run the smoke tests with:
 ```
 
 The current smoke suite checks the Flask app, chat routes, send route, warmup routes, and mocked transcription flow.
+
+For a full setup walkthrough, troubleshooting guide, and first-run verification checklist, use [INSTALLATION.md](INSTALLATION.md).
 
 ## Chat Storage
 
@@ -133,6 +174,13 @@ Hidden training data:
 These training fields are not shown in the UI.
 
 If you want to launch the app against the sample dataset instead of your own local history, point `DATABASE_PATH` to `data/sample_chats.json`.
+
+## Why Visitors Might Care
+
+- You want a transparent local workspace for comparing hosted and local LLM answers.
+- You want to inspect how chat turns and preference-style pairs are stored without digging through a database.
+- You want a small Flask + Playwright + Ollama example that is publishable with safe sample data.
+- You want a codebase that makes the runtime boundaries and legal boundaries explicit.
 
 ## Publishing Notes
 
